@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled'; //importamos style de la libreria emotion que descargamos e instalamos con el comandp  $ npm i @emotion/styled @emotion/core
+import PropTypes from 'prop-types';
 
 //creamos styled Components 
 const ContenedorHeader = styled.header` 
@@ -25,5 +26,9 @@ const Header = ({titulo}) => { //recibimos el prop enviado en App para desplegar
         </ContenedorHeader>
      );
 }
- 
+
+Header.propTypes = {
+    titulo: PropTypes.string.isRequired
+} 
+
 export default Header;
