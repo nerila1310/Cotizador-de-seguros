@@ -15,9 +15,11 @@ const  TextoHeader = styled.h1`
     font-family: 'Slabo 27px', serif;
     text-align: center;
 `;
-//Utilizamos los styled components creados arriba como etiquetas en codigo HTML
+
 const Header = ({titulo}) => { //recibimos el prop enviado en App para desplegarlo desde aqui
     return ( 
+        
+        //Utilizamos los styled components creados arriba como etiquetas en codigo HTML
         <ContenedorHeader>
             <TextoHeader> {titulo} </TextoHeader>
         </ContenedorHeader>
