@@ -23,6 +23,15 @@ const InputRadio = styled.input`
     margin: 0 1rem;
 `;
 
+const Error = styled.div`
+    background-color: red;
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;   
+`;
+
 const Boton = styled.button`
     background-color: #00838F;
     font-size: 16px;
@@ -43,11 +52,14 @@ const Boton = styled.button`
 
 const Formulario = () => {
 
+    //creamos el useState para Datos del formulario, pasandole un objeto
     const [datos, guardarDatos] = useState({
         marca: '',
         year: '',
         plan: ''
     });
+    //Creamos el useState para el Error
+    const [error, guardarError] = useState(false);
 
     //Extraer los valores del useState
     const {marca, year, plan} = datos;
@@ -60,15 +72,47 @@ const Formulario = () => {
         })
     }
 
+    //Cuando el ususario presiona submit (Validacion de formulario)
+    const cotizarSeguro =e => {
+        e.preventDefault();
+
+        //En caso de que no se haya seleccionado ningun valor
+        if(marca.trim() === '' || year.trim() === '' || plan.trim() === ''){
+            guardarError(true); //asignamos al state Error el valor de true
+            return;
+        }
+
+        guardarError(false);
+
+        //Obtener la diferencia de años
+
+        //por cada año hay que restar el 3%
+
+        //americato 15%
+        //asiatico 5%
+        //Europeo 30%
+
+        //básico aumenta 20%
+        //completo 50%
+
+        //total
+
+    }
 
     return ( 
-        <form>
+        <form
+            onSubmit={cotizarSeguro}
+        >
+            
+            {error /*Dependiendo del valor en el state de error se ejecuta */ 
+            ?<Error>Todos los campos son obligatorios</Error> :null } 
+
             <Campo>
                 <Label>Marcar</Label>
                 <Select
                     name="marca"
                     value={marca}
-                    onChange={obtenerInformacion}
+                    onChange={obtenerInformacion} //Mandamos a llamar a la funcion obtener datos cuando hay algun cambio
                 >
                     <option value=""> --Seleccione-- </option>
                     <option value="americano">Americano</option>
@@ -82,7 +126,7 @@ const Formulario = () => {
                 <Select
                     name="year"
                     value={year}
-                    onChange={obtenerInformacion}
+                    onChange={obtenerInformacion} //Mandamos a llamar a la funcion obtener datos cuando hay algun cambio
                 >
                     <option value=""> -- Seleccione -- </option>
                     <option value="2021">2021</option>
@@ -105,7 +149,7 @@ const Formulario = () => {
                     name="plan"
                     value="basico"
                     checked={plan === "basico"}
-                    onChange={obtenerInformacion}
+                    onChange={obtenerInformacion} //Mandamos a llamar a la funcion obtener datos cuando hay algun cambio
                 />Básico
 
                 <InputRadio 
@@ -113,12 +157,12 @@ const Formulario = () => {
                     name="plan"
                     value="completo"
                     checked={plan === "completo"}
-                    onChange={obtenerInformacion}
+                    onChange={obtenerInformacion} //Mandamos a llamar a la funcion obtener datos cuando hay algun cambio
                 />Completo
 
             </Campo>
 
-            <Boton type="button"> Cotizar </Boton>
+            <Boton type="submit"> Cotizar </Boton>
 
         </form>
      );
