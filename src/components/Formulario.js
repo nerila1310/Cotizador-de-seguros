@@ -51,7 +51,7 @@ const Boton = styled.button`
     }
 `;
 
-const Formulario = () => {
+const Formulario = ({guardarResumen}) => {
 
     //creamos el useState para Datos del formulario, pasandole un objeto
     const [datos, guardarDatos] = useState({
@@ -74,7 +74,7 @@ const Formulario = () => {
     }
 
     //Cuando el ususario presiona submit (Validacion de formulario)
-    const cotizarSeguro =e => {
+    const cotizarSeguro = e => {
         e.preventDefault();
 
         //En caso de que no se haya seleccionado ningun valor
@@ -101,7 +101,10 @@ const Formulario = () => {
         const incremetoPlan = obtenerPlan(plan);
         resultado = parseFloat(incremetoPlan * resultado).toFixed(2);
 
-        //total
+        guardarResumen({
+            cotizacion: resultado,
+            datos           
+        })
 
     }
 
