@@ -22,7 +22,7 @@ const Resumen = ({datos}) => {
     
     return ( 
         <ContenedorResumen>
-            <h2>resumen de cotizacion</h2>
+            <h2>Resumen de cotizacion</h2>
             
             <ul>
                 <li>Marca: {primerMayuscula(marca)} </li>
